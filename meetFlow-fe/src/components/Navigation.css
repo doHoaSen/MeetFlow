@@ -1,0 +1,84 @@
+/* 사이드바 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* 사이드바가 화면 밖으로 시작 */
+    width: 250px;
+    height: 100%;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    transition: left 0.3s ease-in-out; /* 사이드바가 열리고 닫힐 때 애니메이션 */
+  }
+  
+  .sidebar.open {
+    left: 0; /* 사이드바 열리면 왼쪽에 위치 */
+  }
+  
+  /* 햄버거 메뉴 */
+  .hamburger-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2000; /* 사이드바보다 앞에 배치 */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .hamburger-menu .bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  /* 햄버거 메뉴가 열렸을 때의 애니메이션 */
+  .hamburger-menu.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger-menu.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger-menu.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  .menu {
+    margin-top: 50px;
+    width: 100%;
+  }
+  
+  .menu .logo {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .menu ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .menu li {
+    margin-bottom: 15px;
+  }
+  
+  .menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+  }
+  
+  .menu a:hover {
+    text-decoration: underline;
+  }
+  

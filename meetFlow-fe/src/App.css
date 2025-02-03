@@ -1,0 +1,216 @@
+/* 전체 레이아웃 */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: row;
+  position: relative;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+  flex: 1;
+  margin-left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* 사이드바가 열리면 메인 콘텐츠가 이동 */
+.main-content.sidebar-open {
+  margin-left: 300px;
+}
+
+/* 사이드바 */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 250px;
+  height: 100%;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+/* 햄버거 메뉴 */
+.hamburger-menu {
+  position: fixed;
+  top: 20px;
+  left: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger-menu .bar {
+  width: 30px;
+  height: 4px;
+  background-color: #3498db;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* 햄버거 메뉴가 열렸을 때의 애니메이션 */
+.hamburger-menu.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* 달력 */
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+}
+
+/* 달력 헤더 */
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  transition: transform 0.2s ease;
+}
+
+.nav-button:hover {
+  transform: scale(1.1);
+}
+
+.nav-button:focus {
+  outline: none;
+}
+
+/* 화살표 스타일 */
+.nav-button::before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+.nav-button:nth-child(2)::before {
+  border-top: none;
+}
+
+/* 달력 내용: 날짜와 요일 */
+.calendar-weekdays, .calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7개의 열로 균등 분배 */
+  width: 100%;
+  text-align: center;
+  grid-gap: 1px;
+}
+
+/* 요일 스타일 */
+.calendar-weekday {
+  background-color: #f7f7f7;
+  font-weight: bold;
+  padding: 10px; /* 요일 칸의 여백 추가 */
+  height: 60px; /* 일정 높이 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 날짜 스타일 */
+.calendar-day {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start; /* 날짜를 좌측 상단에 배치 */
+  align-items: flex-start; /* 날짜를 좌측 상단에 배치 */
+  height: 70px;
+  font-size: 12px; /* 날짜 크기를 작게 설정 */
+  position: relative;
+  padding: 5px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  text-align: left; /* 날짜 텍스트 왼쪽 정렬 */
+}
+
+.calendar-day.today {
+  border: 1px solid #3498db; /* 오늘 날짜의 테두리 강조 */
+  color: #3498db;
+  font-weight: bold;
+  border-radius: 0%; /* 원 모양으로 표시 */
+  display: flex;
+  width: 100%;
+  height: 100%;
+  /* padding: 0; */
+  box-sizing: border-box;
+}
+
+.calendar-day:hover {
+  background-color: #f0f0f0;
+}
+
+/* 달력 요일 칸 */
+.calendar-weekday,
+.calendar-day {
+  font-size: 14px; /* 글씨 크기 통일 */
+  font-weight: 500;
+  padding: 10px; /* 여백 조정 */
+}
+
+/* 날짜와 요일을 독립적으로 스타일링 */
+.calendar-weekdays {
+  background-color: #f7f7f7; /* 요일 배경 색 */
+}
+
+.calendar-days {
+  background-color: #fff; /* 날짜 칸 배경 색 */
+}
